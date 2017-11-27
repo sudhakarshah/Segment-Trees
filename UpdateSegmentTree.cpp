@@ -3,9 +3,15 @@ using namespace std;
 
 void updateSegmentTree(int segTree[],int updateLow, int updateHigh, int inputLow , int inputHigh, int updateValue, int pos)
 {	
-	// if there is no overlap
-	if (updateHigh< inputLow || updateLow>inputHigh || inputLow>inputHigh)
+
+	//out of bounds
+	if (inputLow>inputHigh)
 		return;
+
+	// if there is no overlap
+	if (updateHigh< inputLow || updateLow>inputHigh)
+		return;
+
 
 	// if only one element i.e the leaf node then update it
 	if (inputLow==inputHigh)
@@ -14,6 +20,16 @@ void updateSegmentTree(int segTree[],int updateLow, int updateHigh, int inputLow
 		return;
 	}
 
+	//if full overlap
+	if (updateLow<=inputLow && inputHigh<=updateHigh)
+	{
+		segTree[pos] += updateValue;
+		segTree[2*pos+1] += updateValue;
+		segTree[2*pos+2] += updateValue;
+		return;
+
+	}
+	//if partial overlap 
 	//carrying the same process of the children
 	int mid= (inputLow+inputHigh)/2;
 	updateSegmentTree(segTree,updateLow,updateHigh,inputLow,mid,updateValue,2*pos+1);
