@@ -1,8 +1,9 @@
 #include <iostream>
+#include <limits.h>
 using namespace std;
 
 // creating a variable with large value
-int MAX=999999;
+int MAX=INT_MAX;
 
 
 //Information for range [start,end] is present in segTree[pos]
