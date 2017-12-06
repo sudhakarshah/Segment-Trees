@@ -3,18 +3,18 @@
 using namespace std;
 
 
-void createTree(int input[],int segTree[],int left, int right, int pos)
+void createTree(int input[],int segTree[],int start, int end, int pos)
 {
     // if only one element is left
-    if (right==left)
+    if (start==end)
     {
-        segTree[pos]=input[left];
+        segTree[pos]=input[start];
         return;
     }
-    int mid=(right+left)/2;
+    int mid=(start+end)/2;
     //creating the left child
-    createTree(input,segTree,left,mid,2*pos+1);
+    createTree(input,segTree,start,mid,2*pos+1);
     //creating the right child
-    createTree(input,segTree,mid+1,right,2*pos+2);
+    createTree(input,segTree,mid+1,end,2*pos+2);
     segTree[pos]= min(segTree[2*pos+1],segTree[2*pos+2]);
 }
