@@ -2,11 +2,10 @@
 #include <limits.h>
 using namespace std;
 
-// creating a variable with large value
+// creating a variable with large value, the maximum an integer can hold
 int MAX=INT_MAX;
 
-
-//Information for range [start,end] is present in segTree[pos]
+//Minimum for range [start,end] is present in segTree[pos], computed while creating the tree
 int minimumQuery(int segTree[], int queryStart, int queryEnd , int start , int end, int pos)
 {
 	//if there is a full overlap 
@@ -22,6 +21,6 @@ int minimumQuery(int segTree[], int queryStart, int queryEnd , int start , int e
 	}
 	//if there is partial overlap
 	int mid= (start+end)/2;
-	return min(minimumQuery(segTree,queryStart,queryEnd,start,mid,2*pos+1),minimumQuery(segTree,queryStart,queryEnd,mid+1,end,2*pos+2));
+	return min(minimumQuery(segTree,queryStart,queryEnd,start,mid,2*pos+1),
+		minimumQuery(segTree,queryStart,queryEnd,mid+1,end,2*pos+2));
 }
-
