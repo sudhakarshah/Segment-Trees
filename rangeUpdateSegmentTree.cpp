@@ -20,15 +20,9 @@ void rangeUpdateSegmentTree(int segTree[],int updateStart, int updateEnd, int st
 	//if full overlap
 	if (updateStart<=start && end<=updateEnd)
 	{
-		segTree[pos] = segTree[pos] & updateValue;
-		segTree[2*pos+1] = segTree[2*pos+1] & updateValue;
-		segTree[2*pos+2] =segTree[2*pos+2] & updateValue;
-
-		/*
 		segTree[pos] += updateValue;
 		segTree[2*pos+1] += updateValue;
 		segTree[2*pos+2] += updateValue;
-		*/
 		return;
 	}
 	//if partial overlap 
