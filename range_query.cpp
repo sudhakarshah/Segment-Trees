@@ -5,23 +5,22 @@ using namespace std;
 int MAX=999999;
 
 
-//Information for range [left,right] is present in segTree[pos]
-int minimumQuery(int segTree[], int queryLeft, int queryRight , int left , int right, int pos)
+//Information for range [start,end] is present in segTree[pos]
+int minimumQuery(int segTree[], int queryStart, int queryEnd , int start , int end, int pos)
 {
 	//if there is a full overlap 
-	if (queryLeft<= left && queryRight>=right)
+	if (queryStart <= start && queryEnd >= end)
 	{
 		return segTree[pos];
 	}
 	//if there is no overlap
-	else if (queryRight< left || queryLeft>right)
+	else if (queryEnd < start || queryStart > end)
 	{
 		// returning a very large value
 		return MAX;
 	}
 	//if there is partial overlap
-	int mid= (left+right)/2;
-	return min(minimumQuery(segTree,queryLeft,queryRight,left,mid,2*pos+1),minimumQuery(segTree,queryLeft,queryRight,mid+1,right,2*pos+2));
-
+	int mid= (start+end)/2;
+	return min(minimumQuery(segTree,queryStart,queryEnd,start,mid,2*pos+1),minimumQuery(segTree,queryStart,queryEnd,mid+1,end,2*pos+2));
 }
 
