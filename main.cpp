@@ -8,8 +8,6 @@ using namespace std;
 // creating a variable with large value
 int MAX=INT_MAX;
 
-
-
 int main()
 {
 	//n is size of input array. q is total number of queries
