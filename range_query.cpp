@@ -4,30 +4,24 @@ using namespace std;
 // creating a variable with large value
 int MAX=999999;
 
-int minimumQuery(int segTree[], int queryLow, int queryHigh , int inputLow , int inputHigh, int pos)
+
+//Information for range [left,right] is present in segTree[pos]
+int minimumQuery(int segTree[], int queryLeft, int queryRight , int left , int right, int pos)
 {
 	//if there is a full overlap 
-	if (queryLow<= inputLow && queryHigh>=inputHigh)
+	if (queryLeft<= left && queryRight>=right)
 	{
 		return segTree[pos];
 	}
 	//if there is no overlap
-	else if (queryHigh< inputLow || queryLow>inputHigh)
+	else if (queryRight< left || queryLeft>right)
 	{
 		// returning a very large value
 		return MAX;
 	}
 	//if there is partial overlap
-	int mid= (inputLow+inputHigh)/2;
-
-	return min(minimumQuery(segTree,queryLow,queryHigh,inputLow,mid,2*pos+1),minimumQuery(segTree,queryLow,queryHigh,mid+1,inputHigh,2*pos+2));
-
-}
-
-int main()
-{
-	int test[]={-1,-1,0,-1,2,4,0};
-
-	cout<<minimumQuery(test,1,3,0,3,0);
+	int mid= (left+right)/2;
+	return min(minimumQuery(segTree,queryLeft,queryRight,left,mid,2*pos+1),minimumQuery(segTree,queryLeft,queryRight,mid+1,right,2*pos+2));
 
 }
+
