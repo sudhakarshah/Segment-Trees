@@ -3,7 +3,7 @@ using namespace std;
 
 
 //Information for range [left,right] is present in segTree[pos]
-void updateSegmentTree(int segTree[],int updateLeft, int updateRight, int left , int right, int updateValue, int pos)
+void rangeUpdateSegmentTree(int segTree[],int updateLeft, int updateRight, int left , int right, int updateValue, int pos)
 {	
 	//out of bounds
 	if (left>right)
@@ -28,8 +28,8 @@ void updateSegmentTree(int segTree[],int updateLeft, int updateRight, int left ,
 	//if partial overlap 
 	//carrying the same process of the children
 	int mid= (left+right)/2;
-	updateSegmentTree(segTree,updateLeft,updateRight,left,mid,updateValue,2*pos+1);
-	updateSegmentTree(segTree,updateLeft,updateRight,mid+1,right,updateValue,2*pos+2);
+	rangeUpdateSegmentTree(segTree,updateLeft,updateRight,left,mid,updateValue,2*pos+1);
+	rangeUpdateSegmentTree(segTree,updateLeft,updateRight,mid+1,right,updateValue,2*pos+2);
 	// using the updated children to determine the value for the parent
 	segTree[pos]= min(segTree[2*pos+1],segTree[2*pos+2]);
 }
