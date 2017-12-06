@@ -14,15 +14,21 @@ void rangeUpdateSegmentTree(int segTree[],int updateLeft, int updateRight, int l
 	// if only one element i.e the leaf node then update it
 	if (left==right)
 	{
-		segTree[pos] += updateValue;
+		segTree[pos] = segTree[pos] & updateValue;
 		return;
 	}
 	//if full overlap
 	if (updateLeft<=left && right<=updateRight)
 	{
+		segTree[pos] = segTree[pos] & updateValue;
+		segTree[2*pos+1] = segTree[2*pos+1] & updateValue;
+		segTree[2*pos+2] =segTree[2*pos+2] & updateValue;
+
+		/*
 		segTree[pos] += updateValue;
 		segTree[2*pos+1] += updateValue;
 		segTree[2*pos+2] += updateValue;
+		*/
 		return;
 	}
 	//if partial overlap 
