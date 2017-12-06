@@ -7,7 +7,7 @@ void updateSegmentTree(int segTree[],int updatePos, int start , int end, int upd
 	//out of bounds
 	if (start > end)
 		return;
-	// if there is no overlap
+	// if the position to be updated is outside the range present in the node
 	if (updatePos < start || updatePos > end)
 		return;
 	// if only one element i.e the leaf node then update it
@@ -16,9 +16,7 @@ void updateSegmentTree(int segTree[],int updatePos, int start , int end, int upd
 		segTree[pos] = updateValue;
 		return;
 	}
-	
-	//if partial overlap 
-	//carrying the same process of the children
+	//carrying the same process of the children to get to the leaf node holding the posiiton to be updated
 	int mid= (start+end)/2;
 	updateSegmentTree(segTree,updatePos,start,mid,updateValue,2*pos+1);
 	updateSegmentTree(segTree,updatePos,mid+1,end,updateValue,2*pos+2);
