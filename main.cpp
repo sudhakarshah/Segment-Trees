@@ -1,5 +1,5 @@
 #include "createTree.cpp"
-#include "rangeUpdateSegmentTree.cpp"
+#include "singleUpdate.cpp"
 #include "rangeQuery.cpp"
 #include <iostream>
 #include <cmath>
